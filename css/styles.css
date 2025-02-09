@@ -10,17 +10,19 @@
     --card-border: 1px solid rgba(255, 255, 255, 0.1);
     --nav-bg: rgba(0, 0, 0, 0.95);
     --glass-effect: backdrop-filter: blur(10px);
+    --bg-color: #000000;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 body {
     font-family: 'Inter', sans-serif;
-    background: var(--primary-color);
+    background: var(--bg-color, #000000);
     color: var(--text-color);
     line-height: 1.6;
     min-height: 100vh;
@@ -52,6 +54,7 @@ body::before {
     margin: 0 auto;
     position: relative;
     padding-top: 80px;
+    padding-bottom: env(safe-area-inset-bottom, 60px);
 }
 
 /* Ana İçerik Alanı */
@@ -165,72 +168,114 @@ body::before {
 .task-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 50px;
     padding: 0 20px;
+    margin-top: -30px;
 }
 
 .task-item {
     background: rgba(255, 255, 255, 0.05);
+    border: var(--card-border);
     border-radius: 12px;
-    padding: 15px;
+    padding: 0 15px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 320px;
+    height: 85px;
+    margin: 0 auto;
+    position: relative;
 }
 
+.task-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Task icon için sadeleştirilmiş tanımlama */
 .task-icon {
-    width: 40px;
-    height: 40px;
+    font-size: 25px;
+    color: var(--text-color);
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
-    background: #000;
-}
-
-.task-icon.youtube {
-    background: #FF0000;
-}
-
-.task-icon.telegram {
-    background: #0088cc;
-}
-
-.task-icon.app {
-    background: var(--accent-color);
+    overflow: hidden;
 }
 
 .task-icon img {
-    width: 20px;
-    height: 20px;
+    width: 25px;  /* Görsel boyutu direkt olarak ayarlandı */
+    height: 25px;
+}
+
+/* X (Twitter) ve Telegram ikonları için özel boyutlar */
+.task-icon.twitter i,
+.task-icon.telegram i {
+    font-size: 50px; /* İki katına çıkarıldı */
+}
+
+/* Discord için mevcut boyut korundu */
+.task-icon.discord i {
+    font-size: 25px;
+}
+
+/* Platform özel ikonlar için renk tanımlamaları */
+.task-icon.youtube {
+    color: #FF0000;
+}
+
+.task-icon.telegram {
+    color: #0088cc;
+}
+
+.task-icon.discord {
+    color: #7289da;
+}
+
+.task-icon.twitter {
+    background: #000;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.task-icon.twitter img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .task-content {
     flex: 1;
+    line-height: 1.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .task-title {
+    font-size: 14px;
+    font-weight: 500;
     color: var(--text-color);
-    font-size: 16px;
-    margin-bottom: 4px;
+    margin-bottom: 0;
 }
 
 .task-points {
+    font-size: 12px;
     color: var(--accent-color);
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.task-points::before {
-    content: '';
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    background: var(--accent-color);
-    border-radius: 50%;
+    margin-top: 2px;
 }
 
 .task-subtitle {
@@ -239,18 +284,25 @@ body::before {
 }
 
 .task-action {
-    background: var(--accent-color);
-    color: var(--primary-color);
-    border: none;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-weight: 500;
     cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: none;
+    background: var(--accent-color);
+    color: white;
+    font-weight: 500;
+    position: absolute;
+    right: 15px;
+    z-index: 10;
+    min-width: 70px;
+    text-align: center;
 }
 
-.task-arrow {
-    color: var(--accent-color);
-    font-size: 20px;
+.task-link {
+    text-decoration: none;
+    position: absolute;
+    right: 15px;
+    z-index: 10;
 }
 
 /* Tasks */
@@ -277,7 +329,7 @@ body::before {
 .task-list {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 10px;
 }
 
 .task-item {
@@ -712,17 +764,53 @@ body::before {
     }
 
     .task-item {
-        flex-direction: column;
-        text-align: center;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: left;
+        padding: 0 15px;
+        gap: 12px;
     }
 
-    .task-status {
-        flex-direction: column;
+    .task-icon {
+        margin-left: 0;
+        display: flex;
+        align-items: center;
     }
 
-    .task-btn {
-        width: 100%;
+    .task-content {
+        flex: 1;
+        margin-left: 0;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
+    }
+
+    .task-title {
+        margin-bottom: 2px;
+    }
+
+    .task-action {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        min-width: 60px;
+        padding: 6px 12px;
+    }
+    
+    .task-link {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 }
 
@@ -1538,3 +1626,7 @@ body::before {
 #wallet.page-section.active {
     visibility: visible;
 }
+
+.task-icon i {
+    font-size: 25px;
+}   

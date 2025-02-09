@@ -12,6 +12,9 @@
     <!-- Font Awesome için CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
     <!-- TON Connect SDK'ları - Sıralama önemli -->
     <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js"></script>
     <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
@@ -60,64 +63,60 @@
                 </div>
 
                 <div class="task-list">
-                    <!-- Twitter Task -->
-                    <div class="task-item">
-                        <div class="task-icon">
-                            <i class="fab fa-x-twitter"></i>
+                    <!-- X (Twitter) Task -->
+                    <div class="task-item" data-task-id="twitter">
+                        <div class="task-icon twitter">
+                            <img src="assets/x-logo.png" alt="X" class="task-icon-img">
                         </div>
                         <div class="task-content">
-                            <div class="task-title">Subscribe to X</div>
+                            <div class="task-title">Follow FLOX on X</div>
                             <div class="task-points">20000</div>
                         </div>
-                        <button class="task-action">Claim</button>
+                        <a href="https://x.com/floxcom" target="_blank" class="task-link">
+                            <button class="task-action">Follow</button>
+                        </a>
                     </div>
 
-                    <!-- YouTube Task -->
-                    <div class="task-item">
-                        <div class="task-icon youtube">
-                            <i class="fab fa-youtube"></i>
-                        </div>
-                        <div class="task-content">
-                            <div class="task-title">Subscribe to YouTube</div>
-                            <div class="task-points">20000</div>
-                        </div>
-                        <div class="task-arrow">→</div>
-                    </div>
-
-                    <!-- Telegram Task -->
-                    <div class="task-item">
+                    <!-- Telegram Channel Task -->
+                    <div class="task-item" data-task-id="telegram-channel">
                         <div class="task-icon telegram">
                             <i class="fab fa-telegram"></i>
                         </div>
                         <div class="task-content">
-                            <div class="task-title">Join FLOX news channel</div>
+                            <div class="task-title">Join FLOX News Channel</div>
                             <div class="task-points">20000</div>
                         </div>
-                        <div class="task-arrow">→</div>
+                        <a href="https://t.me/floxcommunityc" target="_blank" class="task-link">
+                            <button class="task-action">Join</button>
+                        </a>
                     </div>
 
-                    <!-- App Icon Task -->
-                    <div class="task-item">
-                        <div class="task-icon app">
-                            <img src="./assets/flogo.svg" alt="FLOX Logo">
-                        </div>
-                        <div class="task-content">
-                            <div class="task-title">Add FLOX app icon to your Home Screen</div>
-                            <div class="task-points">20000</div>
-                        </div>
-                        <div class="task-arrow">→</div>
-                    </div>
-
-                    <!-- Boost Task -->
-                    <div class="task-item">
+                    <!-- Telegram Group Task -->
+                    <div class="task-item" data-task-id="telegram-group">
                         <div class="task-icon telegram">
                             <i class="fab fa-telegram"></i>
                         </div>
                         <div class="task-content">
-                            <div class="task-title">Boost FLOX Channel</div>
-                            <div class="task-subtitle">Farming boost +5 points per hour</div>
+                            <div class="task-title">Join FLOX Community</div>
+                            <div class="task-points">20000</div>
                         </div>
-                        <div class="task-arrow">→</div>
+                        <a href="https://t.me/floxcommunity" target="_blank" class="task-link">
+                            <button class="task-action">Join</button>
+                        </a>
+                    </div>
+
+                    <!-- Discord Task -->
+                    <div class="task-item" data-task-id="discord">
+                        <div class="task-icon discord">
+                            <i class="fab fa-discord"></i>
+                        </div>
+                        <div class="task-content">
+                            <div class="task-title">Join Discord Server</div>
+                            <div class="task-points">20000</div>
+                        </div>
+                        <a href="https://discord.gg/4H9sTPDt" target="_blank" class="task-link">
+                            <button class="task-action">Join</button>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -174,6 +173,18 @@
                             <span class="label">Balance:</span>
                             <span class="value">0 TON</span>
                         </div>
+                    </div>
+
+                    <!-- OG Role Task -->
+                    <div class="airdrop-task">
+                        <div class="task-icon">
+                            <img src="./assets/flogo.svg" alt="FLOX" class="task-icon-img">
+                        </div>
+                        <div class="task-content">
+                            <div class="task-title">Verify for $FLOX airdrop</div>
+                            <div class="task-points">220</div>
+                        </div>
+                        <div class="task-arrow">→</div>
                     </div>
                 </div>
             </section>
