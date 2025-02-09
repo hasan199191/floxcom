@@ -2,8 +2,8 @@
     /* Blum benzeri renk paleti */
     --primary-color: #000000;  /* Ana arka plan rengi - siyah */
     --secondary-color: #0A0A0A; /* İkincil arka plan rengi - koyu gri */
-    --accent-color: #0066FF;   /* Vurgu rengi - mavi */
-    --accent-glow: rgba(0, 102, 255, 0.2); /* Mavi glow efekti */
+    --accent-color: #FFFFFF;   /* Mavi (#0066FF) yerine beyaz */
+    --accent-glow: rgba(255, 255, 255, 0.2); /* Mavi glow yerine beyaz glow */
     --text-color: #FFFFFF;     /* Ana metin rengi - beyaz */
     --text-secondary: #808080; /* İkincil metin rengi - gri */
     --card-bg: rgba(20, 20, 20, 0.5); /* Kart arka planı */
@@ -11,9 +11,19 @@
     --nav-bg: rgba(0, 0, 0, 0.95);
     --glass-effect: backdrop-filter: blur(10px);
     --bg-color: #000000;
+    --primary-black: #000000;
+    --primary-white: #ffffff;
+    --dark-gray: #333333;
+    --medium-gray: #666666;
+    --light-gray: #f5f5f5;
     }
     
-   
+    body {
+        background-color: black !important; /* Arka planı siyah yap */
+        color: white; /* Metin rengini beyaz yap (okunabilirlik için) */
+        background-color: var(--primary-white);
+        color: var(--primary-black);
+        font-family: 'Inter', -apple-system, sans-serif;
     }
     * {
     margin: 0;
@@ -120,7 +130,7 @@
     }
     
     .nav-item.active {
-    color: var(--accent-color);
+    color: #FFFFFF !important; /* Mavi yerine beyaz */
     }
     
     /* Learn Cards */
@@ -145,7 +155,7 @@
     .learn-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    border-color: var(--accent-color);
+    border-color: #FFFFFF; /* Mavi yerine beyaz */
     }
     
     .learn-card i {
@@ -195,6 +205,7 @@
     .task-item:hover {
     background: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
+    border-color: #FFFFFF; /* Mavi yerine beyaz */
     }
     
     /* Task icon için sadeleştirilmiş tanımlama */
@@ -276,7 +287,7 @@
     
     .task-points {
     font-size: 12px;
-    color: var(--accent-color);
+    color: #FFFFFF !important; /* Mavi yerine beyaz */
     margin-top: 2px;
     }
     
@@ -290,7 +301,7 @@
     padding: 6px 12px;
     border-radius: 4px;
     border: none;
-    background: var(--accent-color);
+    background: #333333 !important; /* Mavi yerine koyu gri */
     color: white;
     font-weight: 500;
     position: absolute;
@@ -372,6 +383,11 @@
     .task-icon.discord {
     background: #7289da;
     color: white;
+    }
+    
+    .task-icon.daily {
+    background: #333333 !important; /* Mavi yerine koyu gri */
+    color: #FFFFFF;
     }
     
     .task-icon.daily {
@@ -1631,4 +1647,70 @@
     
     .task-icon i {
     font-size: 25px;
-    }   
+    }
+
+/* Ana konteyner */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Kartlar ve çerçeveler için */
+.card {
+  background-color: var(--primary-white);
+  border: 1px solid var(--dark-gray);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Butonlar */
+.button {
+  background-color: var(--primary-black);
+  color: var(--primary-white);
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: var(--dark-gray);
+}
+
+/* Input alanları */
+.input {
+  border: 2px solid var(--dark-gray);
+  border-radius: 4px;
+  padding: 0.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* Header */
+.header {
+  background-color: var(--primary-black);
+  color: var(--primary-white);
+  padding: 1rem 0;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--dark-gray);
+  color: var(--primary-white);
+  padding: 2rem 0;
+  margin-top: 2rem;
+}
+
+.dark-theme {
+    background-color: var(--primary-black);
+    color: var(--primary-white);
+}
+
+.dark-theme .card {
+    background-color: var(--dark-gray);
+    border-color: var(--medium-gray);
+}
