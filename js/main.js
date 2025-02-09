@@ -1,6 +1,30 @@
+// Telegram WebApp API'sinin yüklendiğinden emin ol
+if (window.Telegram && window.Telegram.WebApp) {
+    const tg = window.Telegram.WebApp;
+
+    // Mini App'i tam ekran yap
+    tg.expand();
+
+    // Arka plan rengini siyah yap
+    document.body.style.backgroundColor = '#000000';
+
+    // Header rengini ayarla
+    tg.setHeaderColor('bg_color'); // Telegram tema rengini kullan
+
+    // Bottom bar rengini siyah yap
+    tg.setBackgroundColor('#000000');
+
+    // Metin rengini beyaz yap (okunabilirlik için)
+    document.body.style.color = '#FFFFFF';
+} else {
+    console.error("Telegram WebApp API is not available.");
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Tüm nav-item'ları seç
     const navItems = document.querySelectorAll('.nav-item');
+
+    
     
     // Her nav-item için click event listener ekle
     navItems.forEach(item => {
@@ -10,6 +34,18 @@ document.addEventListener('DOMContentLoaded', function() {
             // Aktif nav-item'ı güncelle
             navItems.forEach(nav => nav.classList.remove('active'));
             this.classList.add('active');
+
+            tg.setHeaderColor('bg_color'); // 'bg_color', Telegram tema rengini kullanır
+
+// Bottom bar rengini siyah yap
+tg.setBackgroundColor('#000000'); // Bottom bar rengini siyah yap
+
+
+// Telegram tema renklerini al
+const bgColor = tg.themeParams.bg_color || '#000000'; // Varsayılan olarak siyah
+
+// Arka plan rengini uygula
+document.body.style.backgroundColor = bgColor;
             
             // Hangi sayfanın gösterileceğini belirle
             const pageId = this.getAttribute('data-page');
@@ -27,6 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Telegram WebApp başlatma
 const tg = window.Telegram.WebApp;
+// Header rengini siyah yap
+
 
 // WebApp'i başlat
 tg.expand(); // Mini App'i tam ekran yap
