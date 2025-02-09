@@ -201,10 +201,11 @@
     </div>
 
     <script src="js/main.js"></script>
-    <script src="js/wallet.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async function() {
             try {
+                console.log('Initializing TON Connect...');  // Başlangıç mesajı
+                
                 // Initialize TON Connect
                 window.tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
                     manifestUrl: 'https://hasan199191.github.io/floxcom/tonconnect-manifest.json',
@@ -214,7 +215,8 @@
                     }
                 });
 
-                console.log('TON Connect UI initialized');
+                console.log('TON Connect UI initialized successfully');
+                console.log('Using manifest:', 'https://hasan199191.github.io/floxcom/tonconnect-manifest.json');
 
                 // Listen for wallet connection status changes
                 tonConnectUI.onStatusChange(async (wallet) => {
@@ -222,23 +224,34 @@
                     const walletAddress = document.getElementById('wallet-address');
                     
                     if (wallet) {
-                        console.log('Wallet connected:', wallet);
+                        console.log('Wallet connected successfully:', {
+                            address: wallet.account.address,
+                            network: wallet.account.chain,
+                            connectTime: new Date().toISOString()
+                        });
+                        
                         const address = wallet.account.address;
                         const shortAddress = `${address.slice(0, 6)}...${address.slice(-4)}`;
                         
                         walletAddress.textContent = `Connected: ${shortAddress}`;
                         walletInfo.style.display = 'block';
 
-                        // Optional: Fetch balance
                         try {
                             const balance = await tonConnectUI.provider.getBalance(address);
+                            console.log('Balance fetched:', balance, 'TON');
                             document.getElementById('wallet-balance').textContent = 
                                 `Balance: ${balance} TON`;
                         } catch (error) {
-                            console.error('Error fetching balance:', error);
+                            console.error('Error fetching wallet balance:', {
+                                error: error.message,
+                                address: address,
+                                timestamp: new Date().toISOString()
+                            });
                         }
                     } else {
-                        console.log('Wallet disconnected');
+                        console.log('Wallet disconnected', {
+                            timestamp: new Date().toISOString()
+                        });
                         walletInfo.style.display = 'none';
                         walletAddress.textContent = '';
                         document.getElementById('wallet-balance').textContent = '';
@@ -256,7 +269,11 @@
                 }
 
             } catch (error) {
-                console.error('TON Connect initialization error:', error);
+                console.error('TON Connect initialization failed:', {
+                    error: error.message,
+                    stack: error.stack,
+                    timestamp: new Date().toISOString()
+                });
             }
         });
     </script>
