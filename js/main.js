@@ -1,25 +1,3 @@
-// Telegram WebApp API'sinin yüklendiğinden emin ol
-if (window.Telegram && window.Telegram.WebApp) {
-    const tg = window.Telegram.WebApp;
-
-    // Mini App'i tam ekran yap
-    tg.expand();
-
-    // Arka plan rengini siyah yap
-    document.body.style.backgroundColor = '#000000';
-
-    // Header rengini ayarla
-    tg.setHeaderColor('bg_color'); // Telegram tema rengini kullan
-
-    // Bottom bar rengini siyah yap
-    tg.setBackgroundColor('#000000');
-
-    // Metin rengini beyaz yap (okunabilirlik için)
-    document.body.style.color = '#FFFFFF';
-} else {
-    console.error("Telegram WebApp API is not available.");
-}
-
 document.addEventListener('DOMContentLoaded', function() {
     // Tüm nav-item'ları seç
     const navItems = document.querySelectorAll('.nav-item');
