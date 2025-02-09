@@ -162,3 +162,117 @@ async function completeTask(taskId, button) {
         }
     }
 }
+
+// Kullanıcı verilerini yönetmek için class
+class UserManager {
+    constructor() {
+        this.userData = {
+            totalPoints: 0,          // Ana bakiye
+            farmingPoints: 0,        // Farming ile biriken puan
+            lastClaimTime: Date.now(), // Son claim zamanı
+            farmRate: 0.3,           // Saniye başına kazanılan puan
+        };
+        this.loadUserData();
+        this.startFarmingTimer();
+    }
+
+    loadUserData() {
+        const savedData = localStorage.getItem('userData');
+        if (savedData) {
+            this.userData = JSON.parse(savedData);
+        }
+    }
+
+    saveUserData() {
+        localStorage.setItem('userData', JSON.stringify(this.userData));
+    }
+
+    // Farming puanlarını hesapla
+    calculateFarmingPoints() {
+        const now = Date.now();
+        const secondsElapsed = (now - this.userData.lastClaimTime) / 1000;
+        return secondsElapsed * this.userData.farmRate;
+    }
+
+    // Claim işlemi
+    claimPoints() {
+        const farmedPoints = Math.floor(this.calculateFarmingPoints() * 1000) / 1000;
+        if (farmedPoints > 0) {
+            this.userData.totalPoints += farmedPoints;
+            this.userData.lastClaimTime = Date.now();
+            this.saveUserData();
+        }
+        return farmedPoints;
+    }
+
+    updateUI() {
+        // Ana bakiye güncelleme
+        const balanceAmount = document.querySelector('.balance-amount');
+        if (balanceAmount) {
+            const total = Math.floor(this.userData.totalPoints * 1000) / 1000;
+            const mainPart = Math.floor(total);
+            const decimalPart = (total - mainPart).toFixed(3).substring(2);
+            balanceAmount.innerHTML = `${mainPart}<span class="decimal">.${decimalPart}</span>`;
+        }
+
+        // Farming miktarı güncelleme
+        const farmingAmount = document.querySelector('.farming-amount');
+        if (farmingAmount) {
+            const currentFarming = this.calculateFarmingPoints();
+            farmingAmount.textContent = currentFarming.toFixed(3);
+        }
+
+        // Progress bar güncelleme
+        const progressFill = document.querySelector('.progress-fill');
+        if (progressFill) {
+            const progress = Math.min((this.calculateFarmingPoints() / 100) * 100, 100);
+            progressFill.style.width = `${progress}%`;
+        }
+    }
+
+    startFarmingTimer() {
+        setInterval(() => {
+            this.updateUI();
+        }, 1000); // Her saniye güncelle
+    }
+}
+
+// UserManager'ı başlat
+const userManager = new UserManager();
+
+// Claim butonu için event listener
+document.getElementById('claimBtn').addEventListener('click', () => {
+    const earned = userManager.claimPoints();
+    showNotification(`Claimed ${earned.toFixed(3)} points!`);
+});
+
+// Task butonları için event listener
+document.querySelectorAll('.task-action').forEach(button => {
+    button.addEventListener('click', (e) => {
+        const taskId = e.target.closest('.task-item').dataset.taskId;
+        const points = parseInt(e.target.closest('.task-item').querySelector('.task-points').textContent);
+        
+        if (userManager.completeTask(taskId, points)) {
+            showNotification(`Earned ${points} points!`);
+            button.disabled = true;
+            button.textContent = 'Completed';
+        }
+    });
+});
+
+// Her 5 saniyede bir UI'ı güncelle
+setInterval(() => {
+    userManager.updateUI();
+}, 5000);
+
+// Bildirim gösterme fonksiyonu
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
