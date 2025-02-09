@@ -13,9 +13,7 @@
     --bg-color: #000000;
     }
     
-    body {
-        background-color: black !important; /* Arka planı siyah yap */
-        color: white; /* Metin rengini beyaz yap (okunabilirlik için) */
+   
     }
     * {
     margin: 0;
