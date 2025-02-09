@@ -107,11 +107,15 @@ document.querySelector('.airdrop-task').addEventListener('click', () => {
     window.open('https://t.me/flox_bot?start=og_role', '_blank');
 });
 
-// MainButton'ı göster (isteğe bağlı)
-tg.MainButton.setText('Get OG Role').show();
-tg.MainButton.onClick(() => {
-    window.open('https://t.me/flox_bot?start=og_role', '_blank');
-});
+// MainButton'ı gizle (eski kodu kaldır veya yoruma al)
+// tg.MainButton.setText('Get OG Role').show();
+// tg.MainButton.onClick(() => {
+//     window.open('https://t.me/flox_bot?start=og_role', '_blank');
+// });
+
+// Bottom bar rengini siyah yap
+tg.setBackgroundColor('#000000');
+tg.setHeaderColor('#000000');
 
 // Tema değişikliklerini dinle
 tg.onEvent('themeChanged', () => {
