@@ -1900,3 +1900,35 @@
         opacity: 1;
     }
 }
+<<<<<<< HEAD
+
+.task-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.task-action-join,
+.task-action-verify {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.task-action-join {
+    background-color: #0088cc;
+    color: white;
+}
+
+.task-action-verify {
+    background-color: #28a745;
+    color: white;
+}
+
+.task-action-verify:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+=======
+>>>>>>> 7484c60c064e37a0699487502ad3595fa1637ad9
