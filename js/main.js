@@ -37,6 +37,9 @@ document.body.style.backgroundColor = bgColor;
             document.getElementById(pageId).style.display = 'block';
         });
     });
+
+    // Initialize task verification when page loads
+    const taskVerification = new TaskVerification();
 });
 
 // Telegram WebApp başlatma
@@ -235,6 +238,44 @@ class UserManager {
             this.updateUI();
         }, 1000); // Her saniye güncelle
     }
+<<<<<<< HEAD
+
+    async completeTask(taskId, points) {
+        if (this.userData.completedTasks.includes(taskId)) {
+            return false;
+        }
+
+        const taskVerification = new TaskVerification();
+        let isVerified = false;
+
+        // Task türüne göre doğrulama yap
+        switch (taskId) {
+            case 'twitter':
+                isVerified = await taskVerification.checkTwitterFollow();
+                break;
+            case 'telegram-channel':
+                isVerified = await taskVerification.checkTelegramChannel();
+                break;
+            case 'telegram-group':
+                isVerified = await taskVerification.checkTelegramGroup();
+                break;
+            case 'discord':
+                isVerified = await taskVerification.checkDiscordJoin();
+                break;
+        }
+
+        if (isVerified) {
+            this.userData.completedTasks.push(taskId);
+            this.userData.totalPoints += points;
+            this.saveUserData();
+            return true;
+        }
+
+        showNotification('Please complete the task first!');
+        return false;
+    }
+=======
+>>>>>>> 7484c60c064e37a0699487502ad3595fa1637ad9
 }
 
 // UserManager'ı başlat
@@ -248,6 +289,22 @@ document.getElementById('claimBtn').addEventListener('click', () => {
 
 // Task butonları için event listener
 document.querySelectorAll('.task-action').forEach(button => {
+<<<<<<< HEAD
+    button.addEventListener('click', async (e) => {
+        const taskItem = e.target.closest('.task-item');
+        const taskId = taskItem.dataset.taskId;
+        const points = parseInt(taskItem.querySelector('.task-points').textContent);
+        
+        button.disabled = true;
+        button.textContent = 'Verifying...';
+
+        if (await userManager.completeTask(taskId, points)) {
+            showNotification(`Task completed! Earned ${points} points!`);
+            button.textContent = 'Completed';
+        } else {
+            button.disabled = false;
+            button.textContent = 'Verify';
+=======
     button.addEventListener('click', (e) => {
         const taskId = e.target.closest('.task-item').dataset.taskId;
         const points = parseInt(e.target.closest('.task-item').querySelector('.task-points').textContent);
@@ -256,6 +313,7 @@ document.querySelectorAll('.task-action').forEach(button => {
             showNotification(`Earned ${points} points!`);
             button.disabled = true;
             button.textContent = 'Completed';
+>>>>>>> 7484c60c064e37a0699487502ad3595fa1637ad9
         }
     });
 });
@@ -276,3 +334,160 @@ function showNotification(message) {
         notification.remove();
     }, 3000);
 }
+<<<<<<< HEAD
+
+// Sosyal medya görevleri için kontrol fonksiyonları
+class TaskVerification {
+    constructor() {
+        this.BOT_TOKEN = '7940510295:AAHSTbB-TPOCQdWtIBthuJyTwjoy9YR11eA';
+        this.initializeVerifyButtons();
+    }
+
+    initializeVerifyButtons() {
+        document.querySelectorAll('.task-action-verify').forEach(button => {
+            const taskItem = button.closest('.task-item');
+            const taskId = taskItem.dataset.taskId;
+            
+            // Add click event listener
+            button.addEventListener('click', async (e) => {
+                e.preventDefault();
+                
+                // Open bot in new tab
+                window.open(`https://t.me/flox_verify_bot?start=verify_${taskId}`, '_blank');
+            });
+        });
+    }
+
+    async verifyTask(taskId) {
+        const verifyButton = document.querySelector(`[data-task-id="${taskId}"] .task-action-verify`);
+        verifyButton.disabled = true;
+        verifyButton.textContent = 'Verifying...';
+
+        try {
+            const response = await fetch(`https://api.telegram.org/bot${this.BOT_TOKEN}/getChatMember`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: this.getChatId(taskId),
+                    user_id: tg.initDataUnsafe?.user?.id
+                })
+            });
+
+            const data = await response.json();
+            
+            if (data.ok && ['member', 'administrator', 'creator'].includes(data.result?.status)) {
+                verifyButton.textContent = 'Completed';
+                const points = parseInt(verifyButton.closest('.task-item').querySelector('.task-points').textContent);
+                await userManager.addPoints(points);
+                showNotification(`Task completed! Earned ${points} points!`);
+                return true;
+            }
+            
+            verifyButton.disabled = false;
+            verifyButton.textContent = 'Verify';
+            showNotification('Please join first!');
+            return false;
+        } catch (error) {
+            console.error('Verification failed:', error);
+            verifyButton.disabled = false;
+            verifyButton.textContent = 'Verify';
+            showNotification('Verification failed. Please try again.');
+            return false;
+        }
+    }
+
+    async checkVerificationStatus(taskId) {
+        return new Promise((resolve) => {
+            let attempts = 0;
+            const maxAttempts = 20; // 60 saniye max bekleme süresi
+
+            const checkInterval = setInterval(async () => {
+                attempts++;
+                try {
+                    const response = await fetch(`https://api.telegram.org/bot${this.BOT_TOKEN}/getChatMember`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            chat_id: this.getChatId(taskId),
+                            user_id: tg.initDataUnsafe?.user?.id
+                        })
+                    });
+
+                    const data = await response.json();
+                    
+                    if (data.ok && ['member', 'administrator', 'creator'].includes(data.result?.status)) {
+                        clearInterval(checkInterval);
+                        resolve(true);
+                        return;
+                    }
+
+                    if (attempts >= maxAttempts) {
+                        clearInterval(checkInterval);
+                        resolve(false);
+                    }
+                } catch (error) {
+                    console.error('Status check failed:', error);
+                    clearInterval(checkInterval);
+                    resolve(false);
+                }
+            }, 3000); // Her 3 saniyede bir kontrol et
+        });
+    }
+
+    getChatId(taskId) {
+        switch (taskId) {
+            case 'telegram_channel':
+                return '@floxcommunityc';
+            case 'telegram_group':
+                return '@floxcommunity';
+            default:
+                return '';
+        }
+    }
+}
+
+// Event listeners for verify buttons
+document.querySelectorAll('.task-action-verify').forEach(button => {
+    button.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const taskItem = e.target.closest('.task-item');
+        const taskId = taskItem.dataset.taskId;
+        
+        const verification = new TaskVerification();
+        await verification.verifyTask(taskId);
+    });
+});
+
+// Task butonları için event listener
+document.querySelectorAll('.task-action').forEach(button => {
+    button.addEventListener('click', async (e) => {
+        const taskItem = e.target.closest('.task-item');
+        const taskId = taskItem.dataset.taskId;
+        const points = parseInt(taskItem.querySelector('.task-points').textContent);
+        
+        button.disabled = true;
+        button.textContent = 'Verifying...';
+
+        const taskVerification = new TaskVerification();
+        const isVerified = await taskVerification.verifyTask(taskId);
+
+        if (isVerified) {
+            await userManager.completeTask(taskId, points);
+            showNotification(`Task completed! Earned ${points} points!`);
+            button.textContent = 'Completed';
+        } else {
+            button.disabled = false;
+            button.textContent = 'Verify';
+            showNotification('Please complete the task first!');
+        }
+    });
+});
+
+// TaskVerification instance'ını oluştur
+const taskVerification = new TaskVerification();
+=======
+>>>>>>> 7484c60c064e37a0699487502ad3595fa1637ad9
