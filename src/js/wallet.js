@@ -1,51 +1,45 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     try {
-        // TON Connect başlatma
-        const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-            manifestUrl: '/floxcom/tonconnect-manifest.json', // Manifest yolunu düzelttik
+        // Initialize TON Connect
+        window.tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+            manifestUrl: 'https://hasan199191.github.io/my-ton-app/tonconnect-manifest.json',
             buttonRootId: 'connect-container',
-            language: 'en',
             uiPreferences: {
-                theme: 'DARK',
-                colorsSet: {
-                    connectButton: {
-                        background: '#0066FF',
-                        foreground: '#FFFFFF'
-                    }
-                }
+                theme: TON_CONNECT_UI.THEME.DARK
             }
         });
 
-        console.log('TON Connect UI initialized'); // Debug için
+        console.log('TON Connect UI initialized');
 
-        // Wallet sayfasına geçildiğinde butonu güncelle
-        const walletTab = document.querySelector('[data-page="wallet"]');
-        if (walletTab) {
-            walletTab.addEventListener('click', () => {
-                setTimeout(() => {
-                    tonConnectUI.connectButton?.update();
-                }, 100);
-            });
-        }
-
-        // Wallet bağlantı durumunu dinle
-        tonConnectUI.onStatusChange((wallet) => {
-            console.log('Wallet status changed:', wallet); // Debug için
-            const walletMessage = document.querySelector('.wallet-message');
-            const walletInfo = document.querySelector('.wallet-info');
+        // Listen for wallet connection status changes
+        tonConnectUI.onStatusChange(async (wallet) => {
+            const walletInfo = document.getElementById('wallet-info');
+            const walletAddress = document.getElementById('wallet-address');
             
             if (wallet) {
-                walletMessage.textContent = `Connected: ${wallet.account.address.slice(0, 8)}...${wallet.account.address.slice(-6)}`;
-                if (walletInfo) {
-                    walletInfo.style.display = 'block';
+                console.log('Wallet connected:', wallet);
+                const address = wallet.account.address;
+                const shortAddress = `${address.slice(0, 6)}...${address.slice(-4)}`;
+                
+                walletAddress.textContent = `Connected: ${shortAddress}`;
+                walletInfo.style.display = 'block';
+
+                // Optional: Fetch balance
+                try {
+                    const balance = await tonConnectUI.provider.getBalance(address);
+                    document.getElementById('wallet-balance').textContent = 
+                        `Balance: ${balance} TON`;
+                } catch (error) {
+                    console.error('Error fetching balance:', error);
                 }
             } else {
-                walletMessage.textContent = 'Please connect your wallet';
-                if (walletInfo) {
-                    walletInfo.style.display = 'none';
-                }
+                console.log('Wallet disconnected');
+                walletInfo.style.display = 'none';
+                walletAddress.textContent = '';
+                document.getElementById('wallet-balance').textContent = '';
             }
         });
+
     } catch (error) {
         console.error('TON Connect initialization error:', error);
     }
