@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLOX</title>
+    <!-- Favicon ekleme -->
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.ico.svg">
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome için CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- TON Connect SDK'ları - Sıralama önemli -->
+    <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js"></script>
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <main class="content">
+            <section id="main" class="page-section active">
+                <div class="main-container">
+                    <div class="balance-section">
+                        <div class="balance-wrapper">
+                            <div class="logo">
+                                <img src="./assets/flogo.svg" alt="Logo">
+                            </div>
+                            <div class="balance-amount">20261<span class="decimal">.24</span></div>
+                            <div class="balance-label">Your balance</div>
+                        </div>
+                    </div>
+
+                    <div class="boost-status">
+                        ⚡ Boosted ×2000% for 01:48
+                    </div>
+
+                    <!-- Farming Container -->
+                    <div class="farming-container">
+                        <div class="farming-speed">farming speed per hour</div>
+                        <div class="speed-value">12 points</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <div class="farming-info">
+                            <span class="farming-amount">0.040</span> farming
+                            <span class="time-to-fill">5h 59m to fill</span>
+                        </div>
+                        <button id="claimBtn" class="claim-btn">
+                            Claim
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tasks Section -->
+            <section id="tasks" class="page-section">
+                <div class="tasks-header">
+                    <h1>Get points by completing simple tasks</h1>
+                </div>
+
+                <div class="task-list">
+                    <!-- Twitter Task -->
+                    <div class="task-item">
+                        <div class="task-icon">
+                            <i class="fab fa-x-twitter"></i>
+                        </div>
+                        <div class="task-content">
+                            <div class="task-title">Subscribe to X</div>
+                            <div class="task-points">20000</div>
+                        </div>
+                        <button class="task-action">Claim</button>
+                    </div>
+
+                    <!-- YouTube Task -->
+                    <div class="task-item">
+                        <div class="task-icon youtube">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div class="task-content">
+                            <div class="task-title">Subscribe to YouTube</div>
+                            <div class="task-points">20000</div>
+                        </div>
+                        <div class="task-arrow">→</div>
+                    </div>
+
+                    <!-- Telegram Task -->
+                    <div class="task-item">
+                        <div class="task-icon telegram">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <div class="task-content">
+                            <div class="task-title">Join FLOX news channel</div>
+                            <div class="task-points">20000</div>
+                        </div>
+                        <div class="task-arrow">→</div>
+                    </div>
+
+                    <!-- App Icon Task -->
+                    <div class="task-item">
+                        <div class="task-icon app">
+                            <img src="./assets/flogo.svg" alt="FLOX Logo">
+                        </div>
+                        <div class="task-content">
+                            <div class="task-title">Add FLOX app icon to your Home Screen</div>
+                            <div class="task-points">20000</div>
+                        </div>
+                        <div class="task-arrow">→</div>
+                    </div>
+
+                    <!-- Boost Task -->
+                    <div class="task-item">
+                        <div class="task-icon telegram">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <div class="task-content">
+                            <div class="task-title">Boost FLOX Channel</div>
+                            <div class="task-subtitle">Farming boost +5 points per hour</div>
+                        </div>
+                        <div class="task-arrow">→</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Friends Section -->
+            <section id="friends" class="page-section">
+                <div class="friends-header">
+                    <div class="user-info">
+                        <span class="user-id">#5 668 841</span>
+                        <span class="user-tag">@chefcrypto1</span>
+                        <span class="country-tag">GB</span>
+                    </div>
+                </div>
+
+                <div class="friends-content">
+                    <h1>Benefit from sharing</h1>
+                    
+                    <div class="invited-count">
+                        Invited friends: 0
+                    </div>
+
+                    <div class="share-link">
+                        <input type="text" value="https://t.me/flox_bot/start..." readonly>
+                        <button class="copy-link">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </div>
+
+                    <button class="invite-btn">
+                        Invite a friend
+                    </button>
+
+                    <p class="referral-info">
+                        Earn <span class="highlight">10%</span> from friends and an
+                        additional <span class="highlight">2.5%</span> from their referrals.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Wallet Section -->
+            <section id="wallet" class="page-section">
+                <div class="wallet-header">
+                    <h1>Connect Wallet</h1>
+                </div>
+
+                <div class="wallet-container">
+                    <p class="wallet-message">Please connect your wallet</p>
+                    <!-- TON Connect butonu için container -->
+                    <div id="connect-container"></div>
+                    
+                    <!-- Bağlantı sonrası gösterilecek bilgiler -->
+                    <div class="wallet-info" style="display: none;">
+                        <div class="balance-info">
+                            <span class="label">Balance:</span>
+                            <span class="value">0 TON</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="#main" class="nav-item active" data-page="main">
+                <i class="fas fa-home"></i>
+                <span>Main</span>
+            </a>
+            <a href="#tasks" class="nav-item" data-page="tasks">
+                <i class="fas fa-tasks"></i>
+                <span>Tasks</span>
+            </a>
+            <a href="#friends" class="nav-item" data-page="friends">
+                <i class="fas fa-users"></i>
+                <span>Friends</span>
+            </a>
+            <a href="#wallet" class="nav-item" data-page="wallet">
+                <i class="fas fa-wallet"></i>
+                <span>Wallet</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/wallet.js"></script>
+</body>
+</html>
