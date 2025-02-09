@@ -15,9 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             tg.setHeaderColor('bg_color'); // 'bg_color', Telegram tema rengini kullanır
 
-// Bottom bar rengini siyah yap
-tg.setBackgroundColor('#000000'); // Bottom bar rengini siyah yap
-
             
             // Hangi sayfanın gösterileceğini belirle
             const pageId = this.getAttribute('data-page');
