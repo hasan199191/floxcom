@@ -1,292 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLOX</title>
-    <!-- Favicon ekleme -->
-    <link rel="icon" type="image/svg+xml" href="./assets/favicon.ico.svg">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome için CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLOX</title>
+<!-- Favicon ekleme -->
+<link rel="icon" type="image/svg+xml" href="./assets/favicon.ico.svg">
     
-    <!-- Telegram WebApp SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    
-    <!-- TON Connect SDK'ları - Sıralama önemli -->
-    <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js"></script>
-    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+<link rel="stylesheet" href="css/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Font Awesome için CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<!-- Telegram WebApp SDK -->
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<!-- TON Connect SDK'ları - Sıralama önemli -->
+<script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js"></script>
+<script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
 </head>
 <body>
-    <div class="app-container">
-        <main class="content">
-            <section id="main" class="page-section active">
-                <div class="main-container">
-                    <div class="balance-section">
-                        <div class="balance-wrapper">
-                            <div class="logo">
-                                <img src="./assets/flogo.svg" alt="Logo">
-                            </div>
-                            <div class="balance-amount">20261<span class="decimal">.24</span></div>
-                            <div class="balance-label">Your balance</div>
-                        </div>
-                    </div>
+<div class="app-container">
+<main class="content">
+<section id="main" class="page-section active">
+<div class="main-container">
+<div class="balance-section">
+<div class="balance-wrapper">
+<div class="logo">
+<img src="./assets/flogo.svg" alt="Logo">
+</div>
+<div class="balance-amount">20261<span class="decimal">.24</span></div>
+<div class="balance-label">Your balance</div>
+</div>
+</div>
 
-                    <div class="boost-status">
-                        ⚡ Boosted ×2000% for 01:48
-                    </div>
+<div class="boost-status">
+⚡ Boosted ×2000% for 01:48
+</div>
 
-                    <!-- Farming Container -->
-                    <div class="farming-container">
-                        <div class="farming-speed">farming speed per hour</div>
-                        <div class="speed-value">12 points</div>
-                        <div class="progress-bar">
-                            <div class="progress-fill"></div>
-                        </div>
-                        <div class="farming-info">
-                            <span class="farming-amount">0.040</span> farming
-                            <span class="time-to-fill">5h 59m to fill</span>
-                        </div>
-                        <button id="claimBtn" class="claim-btn">
-                            Claim
-                        </button>
-                    </div>
-                </div>
-            </section>
+<!-- Farming Container -->
+<div class="farming-container">
+<div class="farming-speed">farming speed per hour</div>
+<div class="speed-value">12 points</div>
+<div class="progress-bar">
+<div class="progress-fill"></div>
+</div>
+<div class="farming-info">
+<span class="farming-amount">0.040</span> farming
+<span class="time-to-fill">5h 59m to fill</span>
+</div>
+<button id="claimBtn" class="claim-btn">
+Claim
+</button>
+</div>
+</div>
+</section>
 
-            <!-- Tasks Section -->
-            <section id="tasks" class="page-section">
-                <div class="tasks-header">
-                    <h1>Get points by completing simple tasks</h1>
-                </div>
+<!-- Tasks Section -->
+<section id="tasks" class="page-section">
+<div class="tasks-header">
+<h1>Get points by completing simple tasks</h1>
+</div>
 
-                <div class="task-list">
-                    <!-- X (Twitter) Task -->
-                    <div class="task-item" data-task-id="twitter">
-                        <div class="task-icon twitter">
-                            <img src="assets/x-logo.png" alt="X" class="task-icon-img">
-                        </div>
-                        <div class="task-content">
-                            <div class="task-title">Follow FLOX on X</div>
-                            <div class="task-points">20000</div>
-                        </div>
-                        <a href="https://x.com/floxcom" target="_blank" class="task-link">
-                            <button class="task-action">Follow</button>
-                        </a>
-                    </div>
+<div class="task-list">
+<!-- X (Twitter) Task -->
+<div class="task-item" data-task-id="twitter">
+<div class="task-icon twitter">
+<img src="assets/x-logo.png" alt="X" class="task-icon-img">
+</div>
+<div class="task-content">
+<div class="task-title">Follow FLOX on X</div>
+<div class="task-points">20000</div>
+</div>
+<a href="https://x.com/floxcom" target="_blank" class="task-link">
+<button class="task-action">Follow</button>
+</a>
+</div>
 
-                    <!-- Telegram Channel Task -->
-                    <div class="task-item" data-task-id="telegram-channel">
-                        <div class="task-icon telegram">
-                            <i class="fab fa-telegram"></i>
-                        </div>
-                        <div class="task-content">
-                            <div class="task-title">Join FLOX News Channel</div>
-                            <div class="task-points">20000</div>
-                        </div>
-                        <a href="https://t.me/floxcommunityc" target="_blank" class="task-link">
-                            <button class="task-action">Join</button>
-                        </a>
-                    </div>
+<!-- Telegram Channel Task -->
+<div class="task-item" data-task-id="telegram-channel">
+<div class="task-icon telegram">
+<i class="fab fa-telegram"></i>
+</div>
+<div class="task-content">
+<div class="task-title">Join FLOX News Channel</div>
+<div class="task-points">20000</div>
+</div>
+<a href="https://t.me/floxcommunityc" target="_blank" class="task-link">
+<button class="task-action">Join</button>
+</a>
+</div>
 
-                    <!-- Telegram Group Task -->
-                    <div class="task-item" data-task-id="telegram-group">
-                        <div class="task-icon telegram">
-                            <i class="fab fa-telegram"></i>
-                        </div>
-                        <div class="task-content">
-                            <div class="task-title">Join FLOX Community</div>
-                            <div class="task-points">20000</div>
-                        </div>
-                        <a href="https://t.me/floxcommunity" target="_blank" class="task-link">
-                            <button class="task-action">Join</button>
-                        </a>
-                    </div>
+<!-- Telegram Group Task -->
+<div class="task-item" data-task-id="telegram-group">
+<div class="task-icon telegram">
+<i class="fab fa-telegram"></i>
+</div>
+<div class="task-content">
+<div class="task-title">Join FLOX Community</div>
+<div class="task-points">20000</div>
+</div>
+<a href="https://t.me/floxcommunity" target="_blank" class="task-link">
+<button class="task-action">Join</button>
+</a>
+</div>
 
-                    <!-- Discord Task -->
-                    <div class="task-item" data-task-id="discord">
-                        <div class="task-icon discord">
-                            <i class="fab fa-discord"></i>
-                        </div>
-                        <div class="task-content">
-                            <div class="task-title">Join Discord Server</div>
-                            <div class="task-points">20000</div>
-                        </div>
-                        <a href="https://discord.gg/4H9sTPDt" target="_blank" class="task-link">
-                            <button class="task-action">Join</button>
-                        </a>
-                    </div>
-                </div>
-            </section>
+<!-- Discord Task -->
+<div class="task-item" data-task-id="discord">
+<div class="task-icon discord">
+<i class="fab fa-discord"></i>
+</div>
+<div class="task-content">
+<div class="task-title">Join Discord Server</div>
+<div class="task-points">20000</div>
+</div>
+<a href="https://discord.gg/4H9sTPDt" target="_blank" class="task-link">
+<button class="task-action">Join</button>
+</a>
+</div>
+</div>
+</section>
 
-            <!-- Friends Section -->
-            <section id="friends" class="page-section">
-                <div class="friends-header">
-                    <div class="user-info">
-                        <span class="user-id">#5 668 841</span>
-                        <span class="user-tag">@chefcrypto1</span>
-                        <span class="country-tag">GB</span>
-                    </div>
-                </div>
+<!-- Friends Section -->
+<section id="friends" class="page-section">
+<div class="friends-header">
+<div class="user-info">
+<span class="user-id">#5 668 841</span>
+<span class="user-tag">@chefcrypto1</span>
+<span class="country-tag">GB</span>
+</div>
+</div>
 
-                <div class="friends-content">
-                    <h1>Benefit from sharing</h1>
-                    
-                    <div class="invited-count">
-                        Invited friends: 0
-                    </div>
+<div class="friends-content">
+<h1>Benefit from sharing</h1>
 
-                    <div class="share-link">
-                        <input type="text" value="https://t.me/flox_bot/start..." readonly>
-                        <button class="copy-link">
-                            <i class="far fa-copy"></i>
-                        </button>
-                    </div>
+<div class="invited-count">
+Invited friends: 0
+</div>
 
-                    <button class="invite-btn">
-                        Invite a friend
-                    </button>
+<div class="share-link">
+<input type="text" value="https://t.me/flox_bot/start..." readonly>
+<button class="copy-link">
+<i class="far fa-copy"></i>
+</button>
+</div>
 
-                    <p class="referral-info">
-                        Earn <span class="highlight">10%</span> from friends and an
-                        additional <span class="highlight">2.5%</span> from their referrals.
-                    </p>
-                </div>
-            </section>
+<button class="invite-btn">
+Invite a friend
+</button>
 
-            <!-- Wallet Section -->
-            <section id="wallet" class="page-section">
-                <div class="wallet-header">
-                    <h1>Connect Wallet</h1>
-                </div>
+<p class="referral-info">
+Earn <span class="highlight">10%</span> from friends and an
+additional <span class="highlight">2.5%</span> from their referrals.
+</p>
+</div>
+</section>
 
-                <div class="wallet-container">
-                    <p class="wallet-message">Please connect your wallet</p>
-                    <!-- TON Connect butonu için container -->
-                    <div id="connect-container"></div>
-                    
-                    <!-- Bağlantı sonrası gösterilecek bilgiler -->
-                    <div class="wallet-info" style="display: none;">
-                        <div class="balance-info">
-                            <span class="label">Balance:</span>
-                            <span class="value">0 TON</span>
-                        </div>
-                    </div>
+<!-- Wallet Section -->
+<section id="wallet" class="page-section">
+<div class="wallet-header">
+<h1>Connect Wallet</h1>
+</div>
 
-                    <!-- OG Role Task -->
-                    <div class="airdrop-task">
-                        <div class="task-icon">
-                            <img src="./assets/flogo.svg" alt="FLOX" class="task-icon-img">
-                        </div>
-                        <div class="task-content">
-                            <div class="task-title">Verify for $FLOX airdrop</div>
-                            <div class="task-points">220</div>
-                        </div>
-                        <div class="task-arrow">→</div>
-                    </div>
-                </div>
-            </section>
-        </main>
+<div class="wallet-container">
+<p class="wallet-message">Please connect your wallet</p>
+<!-- TON Connect butonu için container -->
+<div id="connect-container"></div>
 
-        <!-- Bottom Navigation -->
-        <nav class="bottom-nav">
-            <a href="#main" class="nav-item active" data-page="main">
-                <i class="fas fa-home"></i>
-                <span>Main</span>
-            </a>
-            <a href="#tasks" class="nav-item" data-page="tasks">
-                <i class="fas fa-tasks"></i>
-                <span>Tasks</span>
-            </a>
-            <a href="#friends" class="nav-item" data-page="friends">
-                <i class="fas fa-users"></i>
-                <span>Friends</span>
-            </a>
-            <a href="#wallet" class="nav-item" data-page="wallet">
-                <i class="fas fa-wallet"></i>
-                <span>Wallet</span>
-            </a>
-        </nav>
-    </div>
+<!-- Bağlantı sonrası gösterilecek bilgiler -->
+<div class="wallet-info" style="display: none;">
+<div class="balance-info">
+<span class="label">Balance:</span>
+<span class="value">0 TON</span>
+</div>
+</div>
 
-    <script src="js/main.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', async function() {
-            try {
-                console.log('Initializing TON Connect...');  // Başlangıç mesajı
-                
-                // Initialize TON Connect
-                window.tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-                    manifestUrl: 'https://hasan199191.github.io/floxcom/tonconnect-manifest.json',
-                    buttonRootId: 'connect-container',
-                    uiPreferences: {
-                        theme: TON_CONNECT_UI.THEME.DARK
-                    }
-                });
+<!-- OG Role Task -->
+<div class="airdrop-task">
+<div class="task-icon">
+<img src="./assets/flogo.svg" alt="FLOX" class="task-icon-img">
+</div>
+<div class="task-content">
+<div class="task-title">Verify for $FLOX airdrop</div>
+<div class="task-points">220</div>
+</div>
+<div class="task-arrow">→</div>
+</div>
+</div>
+</section>
+</main>
 
-                console.log('TON Connect UI initialized successfully');
-                console.log('Using manifest:', 'https://hasan199191.github.io/floxcom/tonconnect-manifest.json');
+<!-- Bottom Navigation -->
+<nav class="bottom-nav">
+<a href="#main" class="nav-item active" data-page="main">
+<i class="fas fa-home"></i>
+<span>Main</span>
+</a>
+<a href="#tasks" class="nav-item" data-page="tasks">
+<i class="fas fa-tasks"></i>
+<span>Tasks</span>
+</a>
+<a href="#friends" class="nav-item" data-page="friends">
+<i class="fas fa-users"></i>
+<span>Friends</span>
+</a>
+<a href="#wallet" class="nav-item" data-page="wallet">
+<i class="fas fa-wallet"></i>
+<span>Wallet</span>
+</a>
+</nav>
+</div>
 
-                // Listen for wallet connection status changes
-                tonConnectUI.onStatusChange(async (wallet) => {
-                    const walletInfo = document.getElementById('wallet-info');
-                    const walletAddress = document.getElementById('wallet-address');
-                    
-                    if (wallet) {
-                        console.log('Wallet connected successfully:', {
-                            address: wallet.account.address,
-                            network: wallet.account.chain,
-                            connectTime: new Date().toISOString()
-                        });
-                        
-                        const address = wallet.account.address;
-                        const shortAddress = `${address.slice(0, 6)}...${address.slice(-4)}`;
-                        
-                        walletAddress.textContent = `Connected: ${shortAddress}`;
-                        walletInfo.style.display = 'block';
+<script src="js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async function() {
+try {
+console.log('Initializing TON Connect...');  // Başlangıç mesajı
 
-                        try {
-                            const balance = await tonConnectUI.provider.getBalance(address);
-                            console.log('Balance fetched:', balance, 'TON');
-                            document.getElementById('wallet-balance').textContent = 
-                                `Balance: ${balance} TON`;
-                        } catch (error) {
-                            console.error('Error fetching wallet balance:', {
-                                error: error.message,
-                                address: address,
-                                timestamp: new Date().toISOString()
-                            });
-                        }
-                    } else {
-                        console.log('Wallet disconnected', {
-                            timestamp: new Date().toISOString()
-                        });
-                        walletInfo.style.display = 'none';
-                        walletAddress.textContent = '';
-                        document.getElementById('wallet-balance').textContent = '';
-                    }
-                });
+// Initialize TON Connect
+window.tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+manifestUrl: 'https://hasan199191.github.io/floxcom/tonconnect-manifest.json',
+buttonRootId: 'connect-container',
+uiPreferences: {
+theme: TON_CONNECT_UI.THEME.DARK
+}
+});
 
-                // Wallet sayfasına geçildiğinde butonu güncelle
-                const walletTab = document.querySelector('[data-page="wallet"]');
-                if (walletTab) {
-                    walletTab.addEventListener('click', () => {
-                        setTimeout(() => {
-                            tonConnectUI.connectButton?.update();
-                        }, 100);
-                    });
-                }
+console.log('TON Connect UI initialized successfully');
+console.log('Using manifest:', 'https://hasan199191.github.io/floxcom/tonconnect-manifest.json');
 
-            } catch (error) {
-                console.error('TON Connect initialization failed:', {
-                    error: error.message,
-                    stack: error.stack,
-                    timestamp: new Date().toISOString()
-                });
-            }
-        });
-    </script>
+// Listen for wallet connection status changes
+tonConnectUI.onStatusChange(async (wallet) => {
+const walletInfo = document.getElementById('wallet-info');
+const walletAddress = document.getElementById('wallet-address');
+
+if (wallet) {
+console.log('Wallet connected successfully:', {
+address: wallet.account.address,
+network: wallet.account.chain,
+connectTime: new Date().toISOString()
+});
+
+const address = wallet.account.address;
+const shortAddress = `${address.slice(0, 6)}...${address.slice(-4)}`;
+
+walletAddress.textContent = `Connected: ${shortAddress}`;
+walletInfo.style.display = 'block';
+
+try {
+const balance = await tonConnectUI.provider.getBalance(address);
+console.log('Balance fetched:', balance, 'TON');
+document.getElementById('wallet-balance').textContent = 
+`Balance: ${balance} TON`;
+} catch (error) {
+console.error('Error fetching wallet balance:', {
+error: error.message,
+address: address,
+timestamp: new Date().toISOString()
+});
+}
+} else {
+console.log('Wallet disconnected', {
+timestamp: new Date().toISOString()
+});
+walletInfo.style.display = 'none';
+walletAddress.textContent = '';
+document.getElementById('wallet-balance').textContent = '';
+}
+});
+
+// Wallet sayfasına geçildiğinde butonu güncelle
+const walletTab = document.querySelector('[data-page="wallet"]');
+if (walletTab) {
+walletTab.addEventListener('click', () => {
+setTimeout(() => {
+tonConnectUI.connectButton?.update();
+}, 100);
+});
+}
+
+} catch (error) {
+console.error('TON Connect initialization failed:', {
+error: error.message,
+stack: error.stack,
+timestamp: new Date().toISOString()
+});
+}
+});
+</script>
 </body>
 </html>
