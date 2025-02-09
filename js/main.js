@@ -15,6 +15,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
             tg.setHeaderColor('bg_color'); // 'bg_color', Telegram tema rengini kullanır
 
+// Bottom bar rengini siyah yap
+tg.setBackgroundColor('#000000'); // Bottom bar rengini siyah yap
+
+
+// Telegram tema renklerini al
+const bgColor = tg.themeParams.bg_color || '#000000'; // Varsayılan olarak siyah
+
+// Arka plan rengini uygula
+document.body.style.backgroundColor = bgColor;
             
             // Hangi sayfanın gösterileceğini belirle
             const pageId = this.getAttribute('data-page');
@@ -32,6 +41,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Telegram WebApp başlatma
 const tg = window.Telegram.WebApp;
+
+// Tema kontrolü için yeni kod
+window.Telegram.WebApp.ready();
+const colorScheme = window.Telegram.WebApp.colorScheme;
+
+if (colorScheme === 'dark') {
+  document.body.classList.add('dark-theme');
+}
+
 // Header rengini siyah yap
 
 
@@ -39,9 +57,9 @@ const tg = window.Telegram.WebApp;
 tg.expand(); // Mini App'i tam ekran yap
 
 // Telegram tema renklerini uygula
-document.documentElement.style.setProperty('--accent-color', tg.themeParams.button_color || '#0066FF');
-document.documentElement.style.setProperty('--text-color', tg.themeParams.text_color || '#FFFFFF');
-document.documentElement.style.setProperty('--bg-color', tg.themeParams.bg_color || '#000000');
+document.documentElement.style.setProperty('--accent-color', '#FFFFFF'); // Mavi yerine beyaz
+document.documentElement.style.setProperty('--text-color', '#FFFFFF');
+document.documentElement.style.setProperty('--bg-color', '#000000');
 
 // Telegram kullanıcı bilgilerini al
 const user = tg.initDataUnsafe?.user;
@@ -73,11 +91,9 @@ tg.MainButton.onClick(() => {
 
 // Tema değişikliklerini dinle
 tg.onEvent('themeChanged', () => {
-    document.documentElement.style.setProperty('--accent-color', tg.themeParams.button_color || '#0066FF');
-    document.documentElement.style.setProperty('--text-color', tg.themeParams.text_color || '#FFFFFF');
-    document.documentElement.style.setProperty('--bg-color', tg.themeParams.bg_color || '#000000');
-    document.body.style.color = '#000000';
-
+    document.documentElement.style.setProperty('--accent-color', '#FFFFFF'); // Mavi yerine beyaz
+    document.documentElement.style.setProperty('--text-color', '#FFFFFF');
+    document.documentElement.style.setProperty('--bg-color', '#000000');
 });
 
 // Bot API entegrasyonu için yardımcı fonksiyon
