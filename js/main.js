@@ -76,6 +76,8 @@ tg.onEvent('themeChanged', () => {
     document.documentElement.style.setProperty('--accent-color', tg.themeParams.button_color || '#0066FF');
     document.documentElement.style.setProperty('--text-color', tg.themeParams.text_color || '#FFFFFF');
     document.documentElement.style.setProperty('--bg-color', tg.themeParams.bg_color || '#000000');
+    document.body.style.color = '#000000';
+
 });
 
 // Bot API entegrasyonu için yardımcı fonksiyon
