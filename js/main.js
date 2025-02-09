@@ -42,6 +42,30 @@ document.body.style.backgroundColor = bgColor;
 // Telegram WebApp başlatma
 const tg = window.Telegram.WebApp;
 
+// WebApp'i başlat ve tema ayarlarını yap
+window.Telegram.WebApp.ready();
+
+// Header ve arka plan rengini siyah yap
+tg.setHeaderColor('#000000');
+tg.setBackgroundColor('#000000');
+
+// Temayı強制的に dark mode yap
+tg.themeParams.bg_color = '#000000';
+tg.themeParams.text_color = '#FFFFFF';
+tg.themeParams.hint_color = '#999999';
+tg.themeParams.link_color = '#FFFFFF';
+tg.themeParams.button_color = '#FFFFFF';
+tg.themeParams.button_text_color = '#000000';
+
+// WebApp'i genişlet
+tg.expand();
+
+// CSS değişkenlerini güncelle
+document.documentElement.style.setProperty('--primary-color', '#000000');
+document.documentElement.style.setProperty('--bg-color', '#000000');
+document.documentElement.style.setProperty('--text-color', '#FFFFFF');
+document.documentElement.style.setProperty('--accent-color', '#FFFFFF');
+
 // Tema kontrolü için yeni kod
 window.Telegram.WebApp.ready();
 const colorScheme = window.Telegram.WebApp.colorScheme;
