@@ -18,6 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
 // Bottom bar rengini siyah yap
 tg.setBackgroundColor('#000000'); // Bottom bar rengini siyah yap
 
+
+// Telegram tema renklerini al
+const bgColor = tg.themeParams.bg_color || '#000000'; // Varsayılan olarak siyah
+
+// Arka plan rengini uygula
+document.body.style.backgroundColor = bgColor;
             
             // Hangi sayfanın gösterileceğini belirle
             const pageId = this.getAttribute('data-page');
