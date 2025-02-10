@@ -1,3 +1,51 @@
+// Navigation System
+document.addEventListener('DOMContentLoaded', () => {
+    const navItems = document.querySelectorAll('.nav-item');
+    const sections = document.querySelectorAll('.page-section');
+    
+    function hideAllSections() {
+        sections.forEach(section => {
+            section.classList.remove('active');
+        });
+    }
+
+    function removeActiveFromNav() {
+        navItems.forEach(item => {
+            item.classList.remove('active');
+        });
+    }
+
+    function showSection(sectionId) {
+        hideAllSections();
+        removeActiveFromNav();
+
+        // Show selected section
+        const section = document.querySelector(sectionId);
+        if (section) {
+            section.classList.add('active');
+        }
+
+        // Update nav item
+        const navItem = document.querySelector(`[href="${sectionId}"]`);
+        if (navItem) {
+            navItem.classList.add('active');
+        }
+    }
+
+    // Add click handlers to nav items
+    navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = item.getAttribute('href');
+            showSection(targetId);
+        });
+    });
+
+    // Show initial section
+    const hash = window.location.hash || '#main';
+    showSection(hash);
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     // Tüm nav-item'ları seç
     const navItems = document.querySelectorAll('.nav-item');
@@ -238,7 +286,6 @@ class UserManager {
             this.updateUI();
         }, 1000); // Her saniye güncelle
     }
-<<<<<<< HEAD
 
     async completeTask(taskId, points) {
         if (this.userData.completedTasks.includes(taskId)) {
@@ -274,8 +321,6 @@ class UserManager {
         showNotification('Please complete the task first!');
         return false;
     }
-=======
->>>>>>> 7484c60c064e37a0699487502ad3595fa1637ad9
 }
 
 // UserManager'ı başlat
@@ -289,7 +334,6 @@ document.getElementById('claimBtn').addEventListener('click', () => {
 
 // Task butonları için event listener
 document.querySelectorAll('.task-action').forEach(button => {
-<<<<<<< HEAD
     button.addEventListener('click', async (e) => {
         const taskItem = e.target.closest('.task-item');
         const taskId = taskItem.dataset.taskId;
@@ -304,16 +348,6 @@ document.querySelectorAll('.task-action').forEach(button => {
         } else {
             button.disabled = false;
             button.textContent = 'Verify';
-=======
-    button.addEventListener('click', (e) => {
-        const taskId = e.target.closest('.task-item').dataset.taskId;
-        const points = parseInt(e.target.closest('.task-item').querySelector('.task-points').textContent);
-        
-        if (userManager.completeTask(taskId, points)) {
-            showNotification(`Earned ${points} points!`);
-            button.disabled = true;
-            button.textContent = 'Completed';
->>>>>>> 7484c60c064e37a0699487502ad3595fa1637ad9
         }
     });
 });
@@ -334,7 +368,6 @@ function showNotification(message) {
         notification.remove();
     }, 3000);
 }
-<<<<<<< HEAD
 
 // Sosyal medya görevleri için kontrol fonksiyonları
 class TaskVerification {
@@ -489,5 +522,3 @@ document.querySelectorAll('.task-action').forEach(button => {
 
 // TaskVerification instance'ını oluştur
 const taskVerification = new TaskVerification();
-=======
->>>>>>> 7484c60c064e37a0699487502ad3595fa1637ad9
