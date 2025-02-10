@@ -106,11 +106,13 @@
     border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
     z-index: 1000;
     padding: 12px 0;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     }
     
     .nav-item {
@@ -1900,7 +1902,6 @@
         opacity: 1;
     }
 }
-<<<<<<< HEAD
 
 .task-actions {
     display: flex;
@@ -1930,5 +1931,3 @@
     background-color: #6c757d;
     cursor: not-allowed;
 }
-=======
->>>>>>> 7484c60c064e37a0699487502ad3595fa1637ad9
