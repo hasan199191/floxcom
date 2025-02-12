@@ -480,5 +480,12 @@ document.addEventListener('DOMContentLoaded', function() {
     window.scrollTo(0, 0);
   });
 </script>
+<script>
+  (function() {
+    if (!location.hash) {
+      location.hash = "#main";
+    }
+  })();
+</script>
 </body>
 </html>
