@@ -305,6 +305,13 @@ additional <span class="highlight">2.5%</span> from their referrals.
 
 <script src="js/main.js"></script>
 <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (!window.location.hash) {
+      window.location.hash = "#main";
+    }
+  });
+</script>
+<script>
 document.addEventListener('DOMContentLoaded', async function() {
 try {
 console.log('Initializing TON Connect...');  // Başlangıç mesajı
@@ -467,6 +474,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 3000);
   }
 });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    window.scrollTo(0, 0);
+  });
 </script>
 </body>
 </html>
