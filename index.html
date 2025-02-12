@@ -36,17 +36,13 @@
 </div>
 </div>
 
-<div class="boost-status">
-⚡ Boosted ×2000% for 01:48
-</div>
-
 <!-- Farming Container -->
 <div class="farming-container">
     <div class="farming-status">
         <div class="farming-amount">0.000</div>
     </div>
     
-    <div class="progress-bar">
+    <div class="progress-bar">  
         <div class="progress-fill"></div>
     </div>
     
@@ -59,79 +55,160 @@
 
 <!-- Tasks Section -->
 <section id="tasks" class="page-section">
-<div class="tasks-header">
-<h1>Get points by completing simple tasks</h1>
-</div>
-
-<!-- Task List Container -->
-<div class="task-list">
-    <!-- X (Twitter) Task -->
-    <div class="task-item" data-task-id="twitter">
-        <div class="task-icon twitter">
-            <img src="assets/x-logo.png" alt="X" class="task-icon-img">
+    <div class="tasks-header">
+      <h1>Get points by completing simple tasks</h1>
+    </div>
+    <div class="task-list">
+      <!-- X (Twitter) Task -->
+      <div class="task-item" data-task-id="twitter">
+        <div class="task-icon">
+          <img src="assets/xlogo.svg" alt="X">
         </div>
         <div class="task-content">
-            <div class="task-title">Follow FLOX on X</div>
-            <div class="task-points">20000</div>
+          <div class="task-title">Follow FLOX on X</div>
+          <div class="task-points">20000</div>
         </div>
-        <div class="task-actions">
-            <a href="https://x.com/floxcom" target="_blank" class="task-link">
-                <button class="task-action-join">Follow</button>
-            </a>
-            <a href="https://t.me/flox_verify_bot?start=verify_twitter" class="task-link">
-                <button class="task-action-verify">Verify</button>
-            </a>
+        <div class="task-arrow" id="twitter-arrow">→</div>
+      </div>
+  
+      <!-- Telegram Channel Task -->
+      <div class="task-item" data-task-id="telegram_channel">
+        <div class="task-icon">
+          <img src="assets/telegramchannellogo.svg" alt="Telegram Channel">
         </div>
-    </div>
-
-    <!-- Telegram Channel Task -->
-    <div class="task-item" data-task-id="telegram_channel">
         <div class="task-content">
-            <div class="task-title">Join FLOX News Channel</div>
-            <div class="task-points">20000</div>
+          <div class="task-title">Join FLOX News Channel</div>
+          <div class="task-points">20000</div>
         </div>
-        <div class="task-actions">
-            <a href="https://t.me/floxcommunityc" target="_blank" class="task-link">
-                <button class="task-action-join">Join Channel</button>
-            </a>
-            <a href="https://t.me/flox_verify_bot?start=verify_telegram_channel" class="task-link">
-                <button class="task-action-verify">Verify</button>
-            </a>
+        <div class="task-arrow" id="telegram_channel-arrow">→</div>
+      </div>
+  
+      <!-- Telegram Group Task -->
+      <div class="task-item" data-task-id="telegram_group">
+        <div class="task-icon">
+          <img src="assets/telegramlogo.svg" alt="Telegram Group">
         </div>
+        <div class="task-content">
+          <div class="task-title">Join FLOX Community</div>
+          <div class="task-points">20000</div>
+        </div>
+        <div class="task-arrow" id="telegram_group-arrow">→</div>
+      </div>
+  
+      <!-- Discord Task -->
+      <div class="task-item" data-task-id="discord">
+        <div class="task-icon">
+          <img src="assets/discordlogo.svg" alt="Discord">
+        </div>
+        <div class="task-content">
+          <div class="task-title">Join Discord Server</div>
+          <div class="task-points">20000</div>
+        </div>
+        <div class="task-arrow" id="discord-arrow">→</div>
+      </div>
     </div>
-</div>
-
-<!-- Telegram Group Task -->
-<div class="task-item" data-task-id="telegram_group">
-    <div class="task-content">
-        <div class="task-title">Join FLOX Community</div>
-        <div class="task-points">20000</div>
-    </div>
-    <div class="task-actions">
-        <a href="https://t.me/floxcommunity" target="_blank" class="task-link">
-            <button class="task-action-join">Join Group</button>
-        </a>
-        <a href="https://t.me/flox_verify_bot?start=verify_telegram_group" class="task-link">
-            <button class="task-action-verify">Verify</button>
-        </a>
-    </div>
-</div>
-
-<!-- Discord Task -->
-<div class="task-item" data-task-id="discord">
-<div class="task-icon discord">
-<i class="fab fa-discord"></i>
-</div>
-<div class="task-content">
-<div class="task-title">Join Discord Server</div>
-<div class="task-points">20000</div>
-</div>
-<a href="https://discord.gg/4H9sTPDt" target="_blank" class="task-link">
-<button class="task-action">Join</button>
-</a>
-</div>
-</div>
-</section>
+  </section>
+  
+  <!-- Uyumlu stil -->
+  <style>
+    .task-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .task-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      border: 1px solid #444;
+      border-radius: 8px;
+      background-color: #262626;
+    }
+    .task-icon {
+      /* İkonları yatay ve dikey olarak ortalamak için */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;  /* Gerekirse genişliği ayarlayabilirsiniz */
+    }
+    .task-icon img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+    }
+    .task-content {
+      flex-grow: 1;
+    }
+    .task-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+    .task-points {
+      font-size: 12px;
+      color: #aaa;
+    }
+    .task-arrow {
+      font-size: 24px;
+      color: #007bff;
+      cursor: pointer;
+    }
+    .farming-status {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .farming-amount {
+      text-align: center;
+      /* İstenilen yazı boyutunu ve diğer stil ayarlarını ekleyebilirsiniz */
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+    }
+    .flox-rain-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 9999;
+    }
+    .flox-rain-logo {
+      position: absolute;
+      top: -50px;
+      width: 30px;
+      opacity: 0.8;
+      animation: fall 3s linear forwards;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+  
+  <script>
+    // Her görevdeki ok ikonuna yönlendirme ekliyoruz.
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('twitter-arrow').addEventListener('click', function() {
+        window.open('https://x.com/floxcom', '_blank');
+      });
+      document.getElementById('telegram_channel-arrow').addEventListener('click', function() {
+        window.open('https://t.me/floxcommunityc', '_blank');
+      });
+      document.getElementById('telegram_group-arrow').addEventListener('click', function() {
+        window.open('https://t.me/floxcommunity', '_blank');
+      });
+      document.getElementById('discord-arrow').addEventListener('click', function() {
+        window.open('https://discord.gg/4H9sTPDt', '_blank');
+      });
+    });
+  </script>
 
 <!-- Friends Section -->
 <section id="friends" class="page-section">
@@ -139,7 +216,7 @@
 <!-- User info bölümünü kaldırıyoruz
 <div class="user-info">
 <span class="user-id">#5 668 841</span>
-<span class="user-tag">@chefcrypto1</span>
+<span class="user-tag">@chefcrypto1</span>  
 <span class="country-tag">GB</span>
 </div>
 -->
@@ -172,35 +249,36 @@ additional <span class="highlight">2.5%</span> from their referrals.
 
 <!-- Wallet Section -->
 <section id="wallet" class="page-section">
-<div class="wallet-header">
-<h1>Connect Wallet</h1>
-</div>
+  <div class="wallet-header">
+    <h1>Connect Wallet</h1>
+  </div>
 
-<div class="wallet-container">
-<p class="wallet-message">Please connect your wallet</p>
-<!-- TON Connect butonu için container -->
-<div id="connect-container"></div>
+  <div class="wallet-container">
+    <p class="wallet-message">Please connect your wallet</p>
+    <!-- TON Connect butonu için container -->
+    <div id="connect-container"></div>
 
-<!-- Bağlantı sonrası gösterilecek bilgiler -->
-<div class="wallet-info" style="display: none;">
-<div class="balance-info">
-<span class="label">Balance:</span>
-<span class="value">0 TON</span>
-</div>
-</div>
+    <!-- Bağlantı sonrası gösterilecek bilgiler -->
+    <div class="wallet-info" style="display: none;">
+      <div class="balance-info">
+        <span class="label">Balance:</span>
+        <span class="value">0 TON</span>
+      </div>
+    </div>
 
-<!-- OG Role Task -->
-<div class="airdrop-task">
-<div class="task-icon">
-<img src="./assets/flogo.svg" alt="FLOX" class="task-icon-img">
-</div>
-<div class="task-content">
-<div class="task-title">Verify for $FLOX airdrop</div>
-<div class="task-points">220</div>
-</div>
-<div class="task-arrow">→</div>
-</div>
-</div>
+    <!-- Aşağıdaki OG Role (FLOX Verify for $FLOX airdrop 220) görevi kaldırıldı.
+    <div class="airdrop-task">
+      <div class="task-icon">
+        <img src="./assets/flogo.svg" alt="FLOX" class="task-icon-img">
+      </div>
+      <div class="task-content">
+        <div class="task-title">Verify for $FLOX airdrop</div>
+        <div class="task-points">220</div>
+      </div>
+      <div class="task-arrow">→</div>
+    </div>
+    -->
+  </div>
 </section>
 </main>
 
@@ -300,6 +378,94 @@ stack: error.stack,
 timestamp: new Date().toISOString()
 });
 }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Puan değişkenleri
+  let totalPoints = Number(localStorage.getItem("totalPoints")) || 0;
+  let farmingPoints = 0;
+  
+  // Elemanları seçiyoruz
+  const balanceAmountEl = document.querySelector('.balance-amount');
+  const farmingAmountEl = document.querySelector('.farming-amount');
+  const claimBtn = document.getElementById('claimBtn');
+  const invitedCountEl = document.querySelector('.invited-count');
+  
+  // Güncelleme fonksiyonları
+  function updateBalanceDisplay() {
+    balanceAmountEl.textContent = totalPoints;
+    localStorage.setItem("totalPoints", totalPoints);
+  }
+  
+  function updateFarmingDisplay() {
+    farmingAmountEl.textContent = farmingPoints.toFixed(3);
+  }
+  
+  function addPoints(points) {
+    totalPoints += points;
+    updateBalanceDisplay();
+  }
+  
+  // Farming: Her saniye 1 puan ekle
+  setInterval(function() {
+    farmingPoints += 1;
+    updateFarmingDisplay();
+  }, 1000);
+  
+  // Claim butonuna tıklandığında farming puanlarını toplam bakiyeye ekle, sıfırla ve yağmur efektini başlat
+  claimBtn.addEventListener('click', function() {
+    addPoints(farmingPoints);
+    farmingPoints = 0;
+    updateFarmingDisplay();
+    rainLogos(); // FLOX logosu yağmur efektini başlat
+  });
+  
+  // Her görev için (arrow tıklaması) 20.000 puan ekle (sadece ilk tıklamada)
+  const taskArrows = document.querySelectorAll('.task-arrow');
+  taskArrows.forEach(function(arrow) {
+    arrow.addEventListener('click', function() {
+      if (!arrow.dataset.completed) {
+        addPoints(20000);
+        arrow.dataset.completed = "true";
+        arrow.style.opacity = "0.5";
+      }
+    });
+  });
+  
+  // Arkadaş davet sistemi: Invite a friend butonuna tıklanırsa örnek 2000 puan bonus ekle
+  const inviteBtn = document.querySelector('.invite-btn');
+  let invitedFriends = 0;
+  if (inviteBtn) {
+    inviteBtn.addEventListener('click', function() {
+      invitedFriends++;
+      invitedCountEl.textContent = "Invited friends: " + invitedFriends;
+      addPoints(2000);
+    });
+  }
+  
+  // İlk bakiyeyi güncelleyelim
+  updateBalanceDisplay();
+  updateFarmingDisplay();
+  
+  // FLOX logosu yağmur efekti fonksiyonu
+  function rainLogos() {
+    const rainContainer = document.createElement('div');
+    rainContainer.classList.add('flox-rain-container');
+    document.body.appendChild(rainContainer);
+    
+    for (let i = 0; i < 20; i++) {
+      const logo = document.createElement('img');
+      logo.src = "assets/flogo.svg";
+      logo.classList.add('flox-rain-logo');
+      logo.style.left = Math.random() * 100 + 'vw';
+      logo.style.animationDuration = (2 + Math.random() * 2) + 's';
+      rainContainer.appendChild(logo);
+    }
+    
+    setTimeout(() => {
+      rainContainer.remove();
+    }, 3000);
+  }
 });
 </script>
 </body>
